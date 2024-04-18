@@ -1,24 +1,29 @@
 #ifndef C_CA2_BUG_H
 #define C_CA2_BUG_H
-//
-// Created by roryo on 11/04/2024.
-//
+
 #include <utility>
 #include <list>
-using namespace std;
+
+// Define Direction enum class
+enum class Direction {
+    North,
+    East,
+    South,
+    West
+};
 
 class Bug {
 protected:
     int id;
-    pair<int, int> position;
-    int direction;
+    std::pair<int, int> position;
+    Direction direction;
     int size;
     bool alive;
-    list<pair<int,int>> path;
+    std::list<std::pair<int,int>> path;
 
-   virtual void move() =0;
+    virtual void move() = 0;
 
-     bool isWayBlocked() ;
+    bool isWayBlocked();
 };
 
 #endif //C_CA2_BUG_H

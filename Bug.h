@@ -1,8 +1,10 @@
-#ifndef C_CA2_BUG_H
-#define C_CA2_BUG_H
+// Bug.h
+#ifndef BUG_H
+#define BUG_H
 
 #include <utility>
 #include <list>
+#include <iostream>
 
 // Define Direction enum class
 enum class Direction {
@@ -21,9 +23,39 @@ protected:
     bool alive;
     std::list<std::pair<int,int>> path;
 
-    virtual void move() = 0;
+public:
+    // Constructor for Bug class
+    Bug(int id, std::pair<int, int> position, Direction direction, int size, bool alive)
+            : id(id), position(std::move(position)), direction(direction), size(size), alive(alive) {
+    }
 
-    bool isWayBlocked();
+
+    virtual ~Bug() {}
+
+
+    virtual void move() = 0;
+    virtual void display() const = 0;
+
+    bool isWayBlocked() {
+        int x = this->position.first;
+        int y = this->position.second;
+
+
+        if (x == 0 && direction == Direction::North) {
+            return true;
+        } else if (x == 9 && direction == Direction::South) {
+            return true;
+        } else if (y == 0 && direction == Direction::West) {
+            return true;
+        } else if (y == 9 && direction == Direction::East) {
+            return true;
+        }
+
+
+        return false;
+    }
+
+
 };
 
-#endif //C_CA2_BUG_H
+#endif // BUG_H

@@ -1,18 +1,15 @@
-#ifndef C_CA2_CRAWLER_H
-#define C_CA2_CRAWLER_H
 //
-// Created by roryo on 11/04/2024.
+// Created by roryo on 28/04/2024.
 //
 
-
-
+#ifndef CA2_SPIDER_H
+#define CA2_SPIDER_H
 #include "Bug.h"
 
-class Crawler: public Bug {
-
+class Spider : public Bug {
 
 public:
-    Crawler(int id, int x, int y, Direction direction, int size, bool alive)
+    Spider(int id, int x, int y, Direction direction, int size, bool alive)
             : Bug{id, {x, y}, direction, size, alive} {
 
     }
@@ -25,4 +22,6 @@ public:
 
 };
 
-#endif //C_CA2_CRAWLER_H
+
+
+#endif //CA2_SPIDER_H

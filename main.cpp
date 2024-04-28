@@ -5,7 +5,9 @@
 #include "Bug.h"
 #include "Crawler.h"
 #include "Hopper.h"
+#include "Spider.h"
 /*https://stackoverflow.com/questions/6406356/how-to-write-vector-values-to-a-file*/
+
 using namespace std;
 
 
@@ -151,6 +153,33 @@ void parseLine(const string& strLine, vector<Bug*>& vect) {
 
             // Create Hopper object and push it into bug_vector
             vect.push_back(new Hopper(id, x, y, direction, size, true, hop_distance));
+        } else if (bug_type == "S") {
+            getline(strStream, strTemp, DELIMITER);
+            int id = stoi(strTemp);
+
+            getline(strStream, strTemp, DELIMITER);
+            int x = stoi(strTemp);
+
+            getline(strStream, strTemp, DELIMITER);
+            int y = stoi(strTemp);
+
+            getline(strStream, strTemp, DELIMITER);
+            int dir = stoi(strTemp);
+            Direction direction;
+            switch (dir) {
+                case 1: direction = Direction::North;
+                    break;
+                case 2: direction = Direction::East;
+                    break;
+                case 3: direction = Direction::South;
+                    break;
+                case 4: direction = Direction::West;
+            }
+
+            getline(strStream, strTemp, DELIMITER);
+            int size = stoi(strTemp);
+            // Create Crawler object and push it into bug_vector
+            vect.push_back(new Spider(id, x, y, direction, size, true));
         }
     } catch (std::invalid_argument const& e) {
         // Handle invalid argument exception

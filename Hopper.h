@@ -13,33 +13,12 @@ public:
     Hopper(int id, int x, int y, Direction direction, int size, bool alive, int hop_distance)
             : Bug{id, {x, y}, direction, size, alive}, hopLength(hop_distance) {
     }
+    virtual int getID() const override {
+        return id;
+    }
 
     void move() override;
-    void display() const override {
-        std::cout << "Hopper ";
-        std::cout << "Bug ID: " << id << std::endl;
-        std::cout << "Position: (" << position.first << ", " << position.second << ")" << std::endl;
-        std::cout << "Direction: ";
-        switch(direction) {
-            case Direction::North:
-                std::cout << "North";
-                break;
-            case Direction::East:
-                std::cout << "East";
-                break;
-            case Direction::South:
-                std::cout << "South";
-                break;
-            case Direction::West:
-                std::cout << "West";
-                break;
-        }
-        std::cout << std::endl;
-        std::cout << "Size: " << size << std::endl;
-        std::cout << "Alive: " << (alive ? "Yes" : "No") << std::endl;
-        std::cout << "Hop Length: " << hopLength << std::endl;
-        std::cout << std::endl;
-    }
+    void display() const override ;
 
 };
 #endif //C_CA2_HOPPER_H

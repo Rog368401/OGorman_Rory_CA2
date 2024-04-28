@@ -29,32 +29,19 @@ public:
             : id(id), position(std::move(position)), direction(direction), size(size), alive(alive) {
     }
 
-
+    virtual int getID() const {
+        return id;
+    }
+    const std::list<std::pair<int,int>>& getPath() const {
+        return path;
+    }
     virtual ~Bug() {}
 
 
     virtual void move() = 0;
     virtual void display() const = 0;
 
-    bool isWayBlocked() {
-        int x = this->position.first;
-        int y = this->position.second;
-
-
-        if (x == 0 && direction == Direction::North) {
-            return true;
-        } else if (x == 9 && direction == Direction::South) {
-            return true;
-        } else if (y == 0 && direction == Direction::West) {
-            return true;
-        } else if (y == 9 && direction == Direction::East) {
-            return true;
-        }
-
-
-        return false;
-    }
-
+    bool isWayBlocked() ;
 
 };
 

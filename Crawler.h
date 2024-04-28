@@ -17,13 +17,16 @@ public:
 
     }
 
-
-
+    virtual int getID() const override {
+        return id;
+    }
+    void move() override;
+    void display() const override ;
 private:
     Crawler(int id, std::pair<int, int> position, Direction direction, int size, bool alive);
 
-    void move() override;
-    void display() const override ;
+
 
 };
+
 #endif //C_CA2_CRAWLER_H

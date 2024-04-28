@@ -8,17 +8,27 @@ using namespace std;
 
 
 void Crawler::move() {
-    int x = this->position.first;
-    int y = this->position.second;
+
     while (isWayBlocked()) {  //
         // change the direction
         //
-        int random = 1 + (rand() % 4);
+        int random = rand() % 4 + 1;
         // generate random 1 -4
         // us that to set new direction
+        switch (random) {
+            case 1:
+                direction = Direction::North;
+                break;
+            case 2: direction = Direction::East;
+                break;
+            case 3: direction = Direction::South;
+                break;
+            case 4: direction = Direction::West;
+
+        }
         direction = static_cast<Direction>(random);
     }
-
+    path.push_back(position);
     // move
     if (direction == Direction::North) {
         position.first -= 1;
@@ -56,15 +66,14 @@ void Crawler::display() const {
     std::cout << std::endl;
     std::cout << "Size: " << size << std::endl;
     std::cout << "Alive: " << (alive ? "Yes" : "No") << std::endl;
+    cout << "Path History:" << endl;
+    // Display path history
+    for (const auto& pos : path) {
+        cout << "(" << pos.first << ", " << pos.second << ")"<< endl;
+    }
     std::cout << std::endl;
 }
 
 
-Crawler::Crawler(int
-                 id, std::pair<int, int>
-                 position, Direction
-                 direction, int
-                 size, bool
-                 alive) : Bug(id, position, direction, size, alive) {}
 
 
